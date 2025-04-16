@@ -6,7 +6,7 @@ set -e
 echo "--- Starting Roo Code Memory Bank Config Setup ---"
 
 # Define files to download (relative to config/ in the repo)
-REPO_BASE_URL="https://raw.githubusercontent.com/GreatScottyMac/roo-code-memory-bank/main/config"
+REPO_BASE_URL="https://raw.githubusercontent.com/nabekou29/roo-code-memory-bank/main/config"
 FILES_TO_DOWNLOAD=(
     ".roorules-architect"
     ".roorules-ask"
@@ -14,11 +14,13 @@ FILES_TO_DOWNLOAD=(
     ".roorules-debug"
     ".roorules-test"
     ".roomodes"
+    "design-docs/architecture/architecture-template.md"
+    "design-docs/features/feature-template.md"
     "insert-variable.sh"
 )
 
 # Check for curl command
-if ! command -v curl &> /dev/null; then
+if ! command -v curl &>/dev/null; then
     echo "Error: curl is not found in your PATH."
     echo "Please install curl using your distribution's package manager (e.g., sudo apt install curl, sudo yum install curl)."
     exit 1
@@ -27,6 +29,9 @@ else
 fi
 
 echo "Downloading configuration files..."
+
+mkdir -p design-docs/architecture
+mkdir -p design-docs/features
 
 # Loop through files and download each one
 for FILE in "${FILES_TO_DOWNLOAD[@]}"; do
@@ -49,6 +54,6 @@ echo "--- Roo Code Memory Bank Config Setup Complete ---"
 
 echo "Scheduling self-deletion of $0..."
 # Run deletion in a background subshell to allow the main script to exit first
-( sleep 1 && rm -f insert-variable.sh && rm -f "$0" ) &
+(sleep 1 && rm -f insert-variable.sh && rm -f "$0") &
 
 exit 0
