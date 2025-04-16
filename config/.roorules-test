@@ -148,7 +148,7 @@ documentation_requirements: |
       - Test context
       - Expected results
       - Actual results
-  4. **Handoff Notes:** 
+  4. **Handoff Notes:**
       - Mode transitions
       - Context sharing
       - Action items
@@ -231,46 +231,16 @@ mode_collaboration: |
         * error_investigation_needed
         * performance_issue_found
         * system_analysis_required
-      - Handoff FROM Debug:
-        * fix_implementation_ready
-        * performance_fix_needed
-        * error_pattern_found
 
-    4. Ask Mode:
-      - Knowledge Share:
-        * Explain code
-        * Document changes
-        * Share patterns
-        * Guide usage
-      - Documentation:
-        * Update docs
-        * Add examples
-        * Clarify usage
-        * Share context
-      - Handoff TO Ask:
-        * documentation_needed
-        * implementation_explanation
-        * pattern_documentation
-      - Handoff FROM Ask:
-        * clarification_received
-        * documentation_complete
-        * knowledge_shared
-
-    5. Default Mode Interaction:
-      - Global Mode Access:
-        * Access to all tools
-        * Mode-independent actions
-        * System-wide commands
-        * Memory Bank functionality
-      - Mode Fallback:
-        * Troubleshooting support
-        * Global tool use
-        * Mode transition guidance
-        * Memory Bank updates
-      - Handoff Triggers:
-        * global_mode_access
-        * mode_independent_actions
-        * system_wide_commands
+implementation_guidelines:
+  description: "テスト実装中に従うべき重要な注意点"
+  rules:
+    - rule: "機能の実装が一区切りできたらコミットすること"
+      description: "テストの追加や修正が完了したら、変更をコミットして進捗を記録します"
+    - rule: "新しく決める必要があるものができたら、architecture モードに切り替えること"
+      description: "テスト戦略や設計の変更が必要な場合は、architect モードに切り替えて適切な判断を行います"
+    - rule: "何度試しても解決が困難の場合はユーザーを頼ること"
+      description: "複数の方法を試してもテストが成功しない場合は、ユーザーに支援を求めます"
 
 mode_triggers:
   architect:
@@ -306,7 +276,7 @@ memory_bank_strategy:
         * If memory-bank DOES exist, skip immediately to `if_memory_bank_exists`.
           </thinking>
   if_no_memory_bank: |
-      1. **Inform the User:**  
+      1. **Inform the User:**
           "No Memory Bank was found. I recommend creating one to  maintain project context. Would you like to switch to Architect mode to do this?"
       2. **Conditional Actions:**
          * If the user declines:
@@ -325,13 +295,13 @@ memory_bank_strategy:
         </thinking>
         Plan: Read all mandatory files sequentially.
         1. Read `productContext.md`
-        2. Read `activeContext.md` 
-        3. Read `systemPatterns.md` 
-        4. Read `decisionLog.md` 
-        5. Read `progress.md` 
+        2. Read `activeContext.md`
+        3. Read `systemPatterns.md`
+        4. Read `decisionLog.md`
+        5. Read `progress.md`
         6. Set status to [MEMORY BANK: ACTIVE] and inform user.
         7. Proceed with the task using the context from the Memory Bank or if no task is provided, use the ask_followup_question tool.
-      
+
 general:
   status_prefix: "Begin EVERY response with either '[MEMORY BANK: ACTIVE]' or '[MEMORY BANK: INACTIVE]', according to the current state of the Memory Bank."
 
@@ -342,9 +312,9 @@ memory_bank_updates:
     trigger: "When a significant architectural decision is made (new component, data flow change, technology choice, etc.). Use your judgment to determine significance."
     action: |
       <thinking>
-      I need to update decisionLog.md with a decision, the rationale, and any implications. 
+      I need to update decisionLog.md with a decision, the rationale, and any implications.
       </thinking>
-      Use insert_content to *append* new information. Never overwrite existing entries. Always include a timestamp.  
+      Use insert_content to *append* new information. Never overwrite existing entries. Always include a timestamp.
     format: |
       "[YYYY-MM-DD HH:MM:SS] - [Summary of Change/Focus/Issue]"
   productContext.md:
