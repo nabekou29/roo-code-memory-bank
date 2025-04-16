@@ -58,11 +58,11 @@ graph LR
 2.  **Download and run the appropriate script** for your operating system using one of the commands below:
     *   **Windows (Command Prompt or PowerShell):**
         ```cmd
-        curl -L -o install.cmd https://raw.githubusercontent.com/GreatScottyMac/roo-code-memory-bank/main/config/install.cmd && cmd /c install.cmd
+        curl -L -o install.cmd https://raw.githubusercontent.com/nabekou29/roo-code-memory-bank/main/config/install.cmd && cmd /c install.cmd
         ```
     *   **Linux / macOS (bash/zsh):**
         ```bash
-        curl -L -o install.sh https://raw.githubusercontent.com/GreatScottyMac/roo-code-memory-bank/main/config/install.sh && chmod +x install.sh && bash install.sh
+        curl -L -o install.sh https://raw.githubusercontent.com/nabekou29/roo-code-memory-bank/main/config/install.sh && chmod +x install.sh && bash install.sh
         ```
     The script will download the necessary `.roorules-*`, `.roomodes`, and helper files into your project root, inject the workspace path into `.roorules-test`, and then attempt to delete the installation and helper scripts.
 
